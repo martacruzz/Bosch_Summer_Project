@@ -41,29 +41,29 @@ import java.util.List;
 
         @Override
         public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-            holder.textViewName = mData.get(position).name;
-            holder.textViewDate = mData.get(position).date;
-            holder.textViewTime = mData.get(position).hour;
-            holder.textViewDescription = mData.get(position).description;
+            holder.textViewName.setText(mData.get(position).name);
+            holder.textViewDate.setText(mData.get(position).date);
+            holder.textViewTime.setText(mData.get(position).hour);
+            holder.textViewDescription.setText(mData.get(position).description);
 
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mData.size();
         }
 
         public class myViewHolder extends RecyclerView.ViewHolder{
-            String textViewName;
-            String textViewDate;
-            String textViewTime;
-            String textViewDescription;
+            TextView textViewName;
+            TextView textViewDate;
+            TextView textViewTime;
+            TextView textViewDescription;
             public myViewHolder(View itemView){
                 super (itemView);
-                textViewName = itemView.findViewById(R.id.textViewName).toString();
-                textViewDate = itemView.findViewById(R.id.textViewDate).toString();
-                textViewTime = itemView.findViewById(R.id.textViewTime).toString();
-                textViewDescription = itemView.findViewById(R.id.textViewDescription).toString();
+                textViewName = itemView.findViewById(R.id.textViewName);
+                textViewDate = itemView.findViewById(R.id.textViewDate);
+                textViewTime = itemView.findViewById(R.id.textViewTime);
+                textViewDescription = itemView.findViewById(R.id.textViewDescription);
             }
         }
     }
