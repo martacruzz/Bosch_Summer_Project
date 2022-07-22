@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalendarFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundTint="#2DDFCC">
+
+
+        <Button
+            android:id="@+id/buttonSelctDateCalendar"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="116dp"
+            android:layout_height="41dp"
+            android:backgroundTint="#333638"
+            android:text="select"
+            android:textColor="#FFF"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.74" />
+
+        <TextView
+            android:id="@+id/buttonHourPicker"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="253dp"
+            android:layout_height="98dp"
+            android:backgroundTint="#333638"
+            android:clickable="true"
+            android:text="Select Time"
+            android:textColor="#333638"
+            android:textSize="14dp"
+            app:iconTint="#333638"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.421" />
+
+        <TextView
+            android:id="@+id/buttonDatePicker"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="322dp"
+            android:layout_height="101dp"
+            android:backgroundTint="#333638"
+            android:clickable="true"
+            android:text="Select Date"
+            android:textColor="#333638"
+            android:textSize="14dp"
+            app:iconTint="#333638"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/textViewSelectTheDay"
+            android:layout_width="258dp"
+            android:layout_height="45dp"
+            android:text="Please select when you want to make the Call"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.131" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

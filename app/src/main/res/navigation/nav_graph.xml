@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainMenuEvents">
+    <fragment
+        android:id="@+id/mainMenu"
+        android:name="com.example.projetoveroippa.MainMenu"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenu_to_logInFragment2"
+            app:destination="@id/logInFragment2" />
+        <action
+            android:id="@+id/action_mainMenu_to_createAccountFragment"
+            app:destination="@id/createAccountFragment" />
+        <action
+            android:id="@+id/action_mainMenu_to_callCenter"
+            app:destination="@id/callCenter" />
+        <action
+            android:id="@+id/action_mainMenu_to_fotgotPasswordFr"
+            app:destination="@id/fotgotPasswordFr" />
+        <action
+            android:id="@+id/action_mainMenu_to_mainMenuEvents"
+            app:destination="@id/mainMenuEvents" />
+    </fragment>
+    <fragment
+        android:id="@+id/callCenter"
+        android:name="com.example.projetoveroippa.CallCenter"
+        android:label="fragment_call_center"
+        tools:layout="@layout/fragment_call_center" >
+        <action
+            android:id="@+id/action_callCenter_to_mainMenu"
+            app:destination="@id/mainMenu" />
+        <action
+            android:id="@+id/action_callCenter_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment2"
+        android:name="com.example.projetoveroippa.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment2_to_callCenter"
+            app:destination="@id/callCenter" />
+        <action
+            android:id="@+id/action_logInFragment2_to_mainMenuEvents"
+            app:destination="@id/mainMenuEvents" />
+    </fragment>
+    <fragment
+        android:id="@+id/createAccountFragment"
+        android:name="com.example.projetoveroippa.CreateAccountFragment"
+        android:label="fragment_create_account"
+        tools:layout="@layout/fragment_create_account" >
+        <action
+            android:id="@+id/action_createAccountFragment_to_logInFragment2"
+            app:destination="@id/logInFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fotgotPasswordFr"
+        android:name="com.example.projetoveroippa.FotgotPasswordFr"
+        android:label="fragment_fotgot_password"
+        tools:layout="@layout/fragment_fotgot_password" >
+        <action
+            android:id="@+id/action_fotgotPasswordFr_to_setNewPasswordFragment"
+            app:destination="@id/setNewPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setNewPasswordFragment"
+        android:name="com.example.projetoveroippa.SetNewPasswordFragment"
+        android:label="fragment_set_new_password"
+        tools:layout="@layout/fragment_set_new_password" >
+        <action
+            android:id="@+id/action_setNewPasswordFragment_to_logInFragment22"
+            app:destination="@id/logInFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.projetoveroippa.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/mainMenuEvents"
+        android:name="com.example.projetoveroippa.MainMenuEvents"
+        android:label="fragment_main_menu_events"
+        tools:layout="@layout/fragment_main_menu_events" >
+        <action
+            android:id="@+id/action_mainMenuEvents_to_mainMenu"
+            app:destination="@id/mainMenu" />
+        <action
+            android:id="@+id/action_mainMenuEvents_to_callCenter"
+            app:destination="@id/callCenter" />
+    </fragment>
+</navigation>

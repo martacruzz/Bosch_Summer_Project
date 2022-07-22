@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProjetoVerãoIPPA</string>
+    <string name="what_s_your_pasword">Qual é a tua Palavra-passe?</string>
+    <string name="what_s_your_user_name">Qual é o teu nome de utilizador?</string>
+    <string name="enter_your_username_and_password_to_log_into_your_account">Introduz o teu nome de utilizador e a tua palavra-passe para entrares na tua conta</string>
+    <string name="what_s_your_user_nameCriarConta">Qual é o teu nome de utilizador?</string>
+    <string name="what_s_your_email">Qual é o teu Email?</string>
+    <string name="now_confirm_your_password">Agora confirma a tua palavra-passe.</string>
+    <string name="what_s_your_password">Qual é a tua Palavra-passe?</string>
+    <string name="please_enter_the_message_you_want_to_send">Por favor introduz a mensagem que queres mandar</string>
+    <string name="please_select_the_priority_of_you_message">Por favor introduz a prioridade da tua mensagem</string>
+    <string name="priority_of_32">Priority of 32</string>
+    <string name="log_in_to_make_calls_into_praesensa">Entra na tua conta para fazer chamadas para a Praesensa.</string>
+    <string name="please_enter_the_zone_to_where_you_want_to_make_the_call">Por favor introduz a zona para onde queres fazer a chamada</string>
+    <string name="userpasswordincorrect">Nome de utilizador ou palavra-chave incorreto</string>
+</resources>
