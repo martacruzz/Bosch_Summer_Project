@@ -36,8 +36,8 @@
 
         <TextView
             android:id="@+id/textViewTime"
-            android:layout_width="207dp"
-            android:layout_height="23dp"
+            android:layout_width="197dp"
+            android:layout_height="26dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
