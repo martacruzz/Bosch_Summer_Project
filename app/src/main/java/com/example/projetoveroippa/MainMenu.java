@@ -39,7 +39,7 @@ private FragmentMainMenuBinding binding;
         // Inflate the layout for this fragment
           if (DataBase.utilizadorAtivo!=null){
             NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_mainMenu_to_mainMenuEvents);
-              Toast.makeText(getContext(), "Welcome back " + DataBase.utilizadorAtivo.userName, Toast.LENGTH_SHORT).show();
+              Toast.makeText(getContext(), getString(R.string.welcome_back) + " " + DataBase.utilizadorAtivo.userName, Toast.LENGTH_SHORT).show();
         }
         binding= FragmentMainMenuBinding.inflate(inflater,container,false);
         return binding.getRoot();

@@ -10,6 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.063"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/textViewCallCenter3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/log_in"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/divider5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <Button
             android:id="@+id/buttonLogInNoLogin"
             style="@style/Widget.Material3.Button"
@@ -53,8 +78,8 @@
 
         <TextView
             android:id="@+id/textViewPass"
-            android:layout_width="287dp"
-            android:layout_height="31dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/what_s_your_pasword"
             android:textSize="17dp"
             android:textStyle="bold"
@@ -67,8 +92,8 @@
 
         <TextView
             android:id="@+id/textViewUserName"
-            android:layout_width="319dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/what_s_your_user_name"
             android:textAlignment="center"
             android:textSize="17dp"
@@ -83,7 +108,7 @@
         <TextView
             android:id="@+id/textView10"
             android:layout_width="313dp"
-            android:layout_height="43dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:text="@string/enter_your_username_and_password_to_log_into_your_account"

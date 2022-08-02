@@ -47,15 +47,29 @@ public class SetNewPasswordFragment extends Fragment {
         binding.buttonResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String s = "";
                 String newPassword = binding.editTextTextPasswordFP2.getText().toString();
                 String newPasswordConfirmed = binding.editTextTextConfirmPasswordFP.getText().toString();
-                    if (newPassword.equals(newPasswordConfirmed)) {
+                if (newPassword.equals(s) || newPasswordConfirmed.equals(s)) {
+                    Toast.makeText(getContext(), getString(R.string.smth_missing), Toast.LENGTH_SHORT).show();
+                } else if (newPassword.equals(newPasswordConfirmed)) {
+                    DataBase.utilizadorAtivo.password = newPassword;                                                    //isto está bem :/
+                    DataBase.utilizadorAtivo = null;
+                    DataBase.saveData(getContext());
+                    Toast.makeText(getContext(), getString(R.string.pass_reset), Toast.LENGTH_SHORT).show();
+                    NavHostFragment.findNavController(SetNewPasswordFragment.this).navigate(R.id.action_setNewPasswordFragment_to_logInFragment22);
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.pass_match), Toast.LENGTH_SHORT).show();
+                }
+
+
+                    /*if (newPassword.equals(newPasswordConfirmed)) {
                         DataBase.utilizadorAtivo.password = newPassword;
                         DataBase.utilizadorAtivo=null;
                         DataBase.saveData(getContext());
                         Toast.makeText(getContext(), "Your password was reset", Toast.LENGTH_SHORT).show();
                         NavHostFragment.findNavController(SetNewPasswordFragment.this).navigate(R.id.action_setNewPasswordFragment_to_logInFragment22);
-                    }
+                    }*/
             }
         });
     }

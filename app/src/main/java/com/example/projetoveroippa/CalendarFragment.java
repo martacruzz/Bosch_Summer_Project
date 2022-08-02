@@ -12,13 +12,21 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.projetoveroippa.databinding.FragmentCalendarBinding;
 import com.example.projetoveroippa.databinding.FragmentSetNewPasswordBinding;
+import com.example.projetoveroippa.object.Event;
+import com.example.projetoveroippa.object.Praesensa;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Locale;
 
 public class CalendarFragment extends Fragment {
@@ -63,6 +71,39 @@ public class CalendarFragment extends Fragment {
                 popDatePicker(view);
             }
         });
+        binding.buttonAddNewEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = "";
+                String noDate = "Select Date";
+                String noTime = "Select Time";
+                boolean validator = true;
+                Event newEvent = new Event();
+                newEvent.name = binding.editTextTextEventNameCreateEvent.getText().toString();
+                newEvent.date = binding.buttonDatePicker.getText().toString();
+                newEvent.hour = binding.buttonHourPicker.getText().toString();
+                newEvent.description = binding.editTextTextEventDescriptionCreateEvent.getText().toString();
+                newEvent.message = binding.spinnerMessages2.getSelectedItemPosition();
+
+
+                if (newEvent.name.equals(s) || newEvent.date.equals(noDate) || newEvent.hour.equals(noTime) || newEvent.description.equals(s)) {
+                    Toast.makeText(getContext(), getString(R.string.smth_missing), Toast.LENGTH_SHORT).show();
+                    validator = false;
+                } else if (!afterTodayDateCheck(newEvent.date, newEvent.hour)) {
+                    Toast.makeText(getContext(),getString(R.string.date_not_valid), Toast.LENGTH_SHORT).show();
+                } else if (validator) {
+                    Toast.makeText(getContext(), getString(R.string.event_created), Toast.LENGTH_SHORT).show();
+                    NavHostFragment.findNavController(CalendarFragment.this).navigate(R.id.action_calendarFragment_to_mainMenuEvents);
+                    DataBase.utilizadorAtivo.events.add(newEvent);
+                    DataBase.saveData(getContext());
+                }
+
+            }
+        });
+        Spinner spinnerMessage = (Spinner) binding.spinnerMessages2;
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Praesensa.arrayMensagens);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMessage.setAdapter(adapter2);
     }
 
     public void popTimePicker(View view) {
@@ -78,7 +119,7 @@ public class CalendarFragment extends Fragment {
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), style, onTimeSetListener, hour, minute, true);
 
-        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.setTitle(getString(R.string.select_time));
         timePickerDialog.show();
     }
 
@@ -89,17 +130,34 @@ public class CalendarFragment extends Fragment {
                 month = selectedMonth + 1;
                 day = selectedDay;
                 year = selectedYear;
-                binding.buttonDatePicker.setText("Year " + year + " Month " + month + " Day " + day );
-
+                binding.buttonDatePicker.setText(day + "/" + month + "/" + year);
             }
         };
-        year = 2022;
+        year = 2023;
         int style = AlertDialog.THEME_HOLO_DARK;
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), style, onDateSetListener, year, month, day);
-        datePickerDialog.setTitle("Select Date");
-        //datePickerDialog.set;
+        datePickerDialog.setTitle(getString(R.string.select_date));
         datePickerDialog.show();
     }
 
-    ;
+    public static boolean afterTodayDateCheck (String date, String hour) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+
+        try {
+            Date DateEvent1 = sdf.parse(date + " " + hour);
+            Date DateEvent2 = new Date();
+            if (DateEvent1.after(DateEvent2)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+
+    }
 }

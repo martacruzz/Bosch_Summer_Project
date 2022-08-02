@@ -16,7 +16,7 @@
             android:layout_width="156dp"
             android:layout_height="39dp"
             android:backgroundTint="#388A4D"
-            android:text="Create Account "
+            android:text="@string/crate_account"
             android:textColor="#FFF"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,8 +44,8 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="0dp"
-            android:layout_height="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:text="@string/log_in_to_make_calls_into_praesensa"
@@ -86,7 +86,7 @@
             android:id="@+id/textViewForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot Password?"
+            android:text="@string/forgot_password"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

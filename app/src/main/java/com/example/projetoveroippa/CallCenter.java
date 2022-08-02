@@ -20,6 +20,7 @@ import com.androidbuts.multispinnerfilter.MultiSpinnerListener;
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
 import com.example.projetoveroippa.databinding.FragmentCallCenterBinding;
 import com.example.projetoveroippa.databinding.FragmentMainMenuBinding;
+import com.example.projetoveroippa.object.Praesensa;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -71,23 +72,26 @@ public class CallCenter extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);*/
 
-        String[] arraySpiner2 = new String[]{"evacu", "airport", "acdc", "thx", "welcome"};
         Spinner spinnerMessage = (Spinner) binding.spinnerMessages;
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, arraySpiner2);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Praesensa.arrayMensagens);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMessage.setAdapter(adapter2);
+        if (DataBase.activeEvent!=null){
+            binding.spinnerMessages.setSelection(DataBase.activeEvent.message);
+        }
 
         List<KeyPairBoolData> multiSpinner = new ArrayList<>();
-        multiSpinner.add(new KeyPairBoolData("Zone 1", false));
-        multiSpinner.add(new KeyPairBoolData("Zone 2", false));
-        multiSpinner.add(new KeyPairBoolData("Zone 3", false));
+        multiSpinner.add(new KeyPairBoolData(getString(R.string.zone_1), false));
+        multiSpinner.add(new KeyPairBoolData(getString(R.string.zone_2), false));
+        multiSpinner.add(new KeyPairBoolData(getString(R.string.zone_3), false));
+        multiSpinner.add(new KeyPairBoolData(getString(R.string.zona4), false));
 
         MultiSpinnerSearch multiSelectSpinnerWithSearch = binding.multipleItemSelectionSpinner;
         multiSelectSpinnerWithSearch.setSearchEnabled(true);
-        multiSelectSpinnerWithSearch.setSearchHint("Select the Zones");
+        multiSelectSpinnerWithSearch.setSearchHint(getString(R.string.select_zones));
         multiSelectSpinnerWithSearch.setEmptyTitle("Not Data Found!");
         multiSelectSpinnerWithSearch.setShowSelectAllButton(true);
-        multiSelectSpinnerWithSearch.setClearText("Close & Clear");
+        multiSelectSpinnerWithSearch.setClearText(getString(R.string.close_clear));
 
         ArrayList<String> selectedZones = new ArrayList<>();
 
@@ -99,7 +103,6 @@ public class CallCenter extends Fragment {
                 for (int i = 0; i < selectedItems.size(); i++) {
                     if (selectedItems.get(i).isSelected()) {
                         selectedZones.add(selectedItems.get(i).getName());
-                        //Toast.makeText(getContext(), selectedZones.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -130,7 +133,7 @@ public class CallCenter extends Fragment {
             @Override
             public void onClick(View view) {
                 if (selectedZones.isEmpty()) {
-                    Toast.makeText(getContext(), "There are no zones selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.no_zones_selected), Toast.LENGTH_SHORT).show();
                 } else {
                     String json = "{\"Priority\":" + seekBar.getProgress() + ",\"Zones\":" + zonesToString(selectedZones) + ",\"Message\":\"" + spinnerMessage.getSelectedItem() + "\"}";
                     post("https://praesensasummerprojectovar.azurewebsites.net/api/praesensa/prascl-0ea50e-ctrl.local/call", json);
@@ -139,19 +142,11 @@ public class CallCenter extends Fragment {
 
             }
         });
-        /*binding.logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DataBase.utilizadorAtivo = null;
-                DataBase.saveData(getContext());
-                NavHostFragment.findNavController(CallCenter.this).navigate(R.id.action_callCenter_to_mainMenu);
-            }
-        });*/
 
         binding.floatingActionButtonEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(CallCenter.this).navigate(R.id.action_callCenter_to_calendarFragment);
+                NavHostFragment.findNavController(CallCenter.this).navigate(R.id.action_callCenter_to_mainMenuEvents);
             }
         });
 
@@ -166,7 +161,7 @@ public class CallCenter extends Fragment {
         try (Response response = client.newCall(request).execute()) {
             return response.body().string();
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Something is wrong. Please check your Internet connection", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),getString(R.string.internet_connection), Toast.LENGTH_SHORT).show();
             return "Error";
         }
 

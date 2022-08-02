@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class FotgotPasswordFr extends Fragment {
     private FragmentFotgotPasswordBinding binding;
-
+    private User forgotPassUser;
 
     public FotgotPasswordFr() {
         // Required empty public constructor
@@ -52,38 +53,44 @@ public class FotgotPasswordFr extends Fragment {
         binding.buttonForgotInForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean verifier = false;
                 String editUserName = binding.EditUsername.getText().toString();
                 ArrayList<User> users = DataBase.getUsers(getContext());
                 for (int i = 0; i < users.size(); i++) {
                     if (users.get(i).userName.equals(editUserName)) {
+                        forgotPassUser= users.get(i);
                         binding.textViewSecurityQuestionFP.setVisibility(View.VISIBLE);
                         binding.textViewSecurityQuestionFP.setText(DataBase.getUsers(getContext()).get(i).question);
                         binding.EditSecurityQuestion.setVisibility(View.VISIBLE);
                         binding.editAnswer.setVisibility(View.VISIBLE);
                         binding.editSecurityQuestionAnswer.setVisibility(View.VISIBLE);
-                        /*if (binding.editAnswer.getText().toString().equals(DataBase.getUsers(getContext()).get(i).answer)){
-                            binding.editTextTextPasswordFP.setVisibility(View.VISIBLE);
-                            binding.newPasswordFP.setVisibility(View.VISIBLE);
-                        }*/
                         binding.buttonDoneFP.setVisibility(View.VISIBLE);
+                        verifier = true;
                     }
                 }
+                    if (!verifier){
+                        Toast.makeText(getContext(), getString(R.string.user_not_found), Toast.LENGTH_SHORT).show();
+                    }
             }
         });
         binding.buttonDoneFP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean validator=false;
-                for (int i = 0; i < DataBase.getUsers(getContext()).size(); i++) {
-                    if (binding.editAnswer.getText().toString().equals(DataBase.getUsers(getContext()).get(i).answer)) {
-                        DataBase.utilizadorAtivo=DataBase.getUsers(getContext()).get(i);
-                        NavHostFragment.findNavController(FotgotPasswordFr.this).navigate(R.id.action_fotgotPasswordFr_to_setNewPasswordFragment);
-                        validator=true;
-                        break;
+                String e = "";
+                boolean validator = false;
+
+                    if (binding.editAnswer.getText().toString().equals(forgotPassUser.answer)) {
+                        DataBase.utilizadorAtivo = forgotPassUser;
+                        //NavHostFragment.findNavController(FotgotPasswordFr.this).navigate(R.id.action_fotgotPasswordFr_to_setNewPasswordFragment);
+                        validator = true;
                     }
+
+                if (validator) {
+                    NavHostFragment.findNavController(FotgotPasswordFr.this).navigate(R.id.action_fotgotPasswordFr_to_setNewPasswordFragment);
+
                 }
-                if (!validator){
-                    Toast.makeText(getContext(), "Wrong answer", Toast.LENGTH_SHORT).show();
+                if (!validator) {
+                    Toast.makeText(getContext(), getString(R.string.wrong_answer), Toast.LENGTH_SHORT).show();
                 }
             }
         });

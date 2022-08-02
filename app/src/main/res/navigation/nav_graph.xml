@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainMenuEvents">
+    app:startDestination="@id/mainMenu">
     <fragment
         android:id="@+id/mainMenu"
         android:name="com.example.projetoveroippa.MainMenu"
@@ -34,8 +34,8 @@
             android:id="@+id/action_callCenter_to_mainMenu"
             app:destination="@id/mainMenu" />
         <action
-            android:id="@+id/action_callCenter_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
+            android:id="@+id/action_callCenter_to_mainMenuEvents"
+            app:destination="@id/mainMenuEvents" />
     </fragment>
     <fragment
         android:id="@+id/logInFragment2"
@@ -80,7 +80,11 @@
         android:id="@+id/calendarFragment"
         android:name="com.example.projetoveroippa.CalendarFragment"
         android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendarFragment_to_mainMenuEvents"
+            app:destination="@id/mainMenuEvents" />
+    </fragment>
     <fragment
         android:id="@+id/mainMenuEvents"
         android:name="com.example.projetoveroippa.MainMenuEvents"
@@ -92,5 +96,8 @@
         <action
             android:id="@+id/action_mainMenuEvents_to_callCenter"
             app:destination="@id/callCenter" />
+        <action
+            android:id="@+id/action_mainMenuEvents_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
     </fragment>
 </navigation>

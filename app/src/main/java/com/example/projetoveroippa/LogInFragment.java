@@ -58,7 +58,7 @@ public class LogInFragment extends Fragment {
                 String password = binding.editTextTextPassword.getText().toString();
                 String s = "";
                 if (usernameInput.equals(s) || password.equals(s)) {
-                    Toast.makeText(getContext(), "Something is missing", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.smth_missing), Toast.LENGTH_SHORT).show();
                 } else {
 
                     boolean validator = false;
@@ -70,7 +70,7 @@ public class LogInFragment extends Fragment {
                         }
                     }
                     if (validator) {
-                        Toast.makeText(getContext(), "You are logged in", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.logged_in), Toast.LENGTH_SHORT).show();
                         NavHostFragment.findNavController(LogInFragment.this).navigate(R.id.action_logInFragment2_to_mainMenuEvents);
                     } else {
                         Toast.makeText(getContext(), getString(R.string.userpasswordincorrect), Toast.LENGTH_SHORT).show();

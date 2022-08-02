@@ -50,7 +50,7 @@ public class CreateAccountFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String[] spinner = new String[]{"What was the name of your first pet?", "What is your favourite Videogame of all time?", "What is your favourite restaurant?"};
+        String[] spinner = new String[]{getString(R.string.pet), getString(R.string.videogame), getString(R.string.restaurant)};
         Spinner spinnerSecurityQuestion = binding.SpinnerSecurityQuestion;
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinner);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,27 +71,31 @@ public class CreateAccountFragment extends Fragment {
 
 
                 if (userCreated.equals(e)) {
-                    Toast.makeText(getContext(), "Your Name is missing", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.name_missing), Toast.LENGTH_SHORT).show();
                     validator = false;
                 }
                 if (emailCreated.equals(e)) {
-                    Toast.makeText(getContext(), "Your Email is missing", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.email_missing), Toast.LENGTH_SHORT).show();
                     validator = false;
                 }
                 if (passwordCreated.equals(e)) {
-                    Toast.makeText(getContext(), "Your password is missing", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.pass_missing), Toast.LENGTH_SHORT).show();
                     validator = false;
                 } else if (passwordCreatedConfirmed.equals(e)) {
-                    Toast.makeText(getContext(), "Don't forget to confirm your Password ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getString(R.string.confirm_pass) , Toast.LENGTH_SHORT).show();
                     validator = false;
                 } else if (!passwordCreated.equals(passwordCreatedConfirmed)) {
-                    Toast.makeText(getContext(), "The Passwords don't match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.pass_match), Toast.LENGTH_SHORT).show();
+                    validator = false;
+                }
+                if (securityQuestionAnswer.equals(e)){
+                    Toast.makeText(getContext(),getString(R.string.answer_missing), Toast.LENGTH_SHORT).show();
                     validator = false;
                 }
 
                 boolean verifyUser = existingUser(DataBase.getUsers(getContext()), userCreated);
                 if (verifyUser) {
-                    Toast.makeText(getContext(), "This user already exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.user_exists), Toast.LENGTH_SHORT).show();
                     validator = false;
                 }
                 if (validator) {
@@ -102,7 +106,7 @@ public class CreateAccountFragment extends Fragment {
                     user.question = securityQuestion;
                     user.answer = securityQuestionAnswer;
                     DataBase.addAndSaveUser(getContext(), user);
-                    Toast.makeText(getContext(), "Your account was successfully created. Now log in to make calls into Praesensa", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.account_created), Toast.LENGTH_LONG).show();
                     NavHostFragment.findNavController(CreateAccountFragment.this).navigate(R.id.action_createAccountFragment_to_logInFragment2);
                 }
 

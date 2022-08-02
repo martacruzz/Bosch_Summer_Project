@@ -12,69 +12,149 @@
         android:foregroundTint="#2DDFCC">
 
 
+        <Spinner
+            android:id="@+id/spinnerMessages2"
+            android:layout_width="210dp"
+            android:layout_height="29dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.709" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:text="@string/please_enter_the_message_you_want_to_send"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.646" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.063" />
+
+        <TextView
+            android:id="@+id/textViewNewEvent2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/create_event"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/divider4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.108"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <Button
-            android:id="@+id/buttonSelctDateCalendar"
+            android:id="@+id/buttonAddNewEvent"
             style="@style/Widget.Material3.Button"
             android:layout_width="116dp"
             android:layout_height="41dp"
             android:backgroundTint="#333638"
-            android:text="select"
+            android:text="@string/add_event"
             android:textColor="#FFF"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.74" />
+            app:layout_constraintTop_toBottomOf="@+id/divider4"
+            app:layout_constraintVertical_bias="0.844" />
 
         <TextView
             android:id="@+id/buttonHourPicker"
             style="@style/Widget.Material3.Button"
-            android:layout_width="253dp"
-            android:layout_height="98dp"
+            android:layout_width="186dp"
+            android:layout_height="108dp"
             android:backgroundTint="#333638"
             android:clickable="true"
-            android:text="Select Time"
+            android:text="@string/select_time"
             android:textColor="#333638"
             android:textSize="14dp"
             app:iconTint="#333638"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.928"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
+            app:layout_constraintTop_toBottomOf="@+id/divider4"
+            app:layout_constraintVertical_bias="0.324" />
 
         <TextView
             android:id="@+id/buttonDatePicker"
             style="@style/Widget.Material3.Button"
-            android:layout_width="322dp"
-            android:layout_height="101dp"
+            android:layout_width="186dp"
+            android:layout_height="108dp"
             android:backgroundTint="#333638"
             android:clickable="true"
-            android:text="Select Date"
+            android:text="@string/select_date"
             android:textColor="#333638"
             android:textSize="14dp"
             app:iconTint="#333638"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintHorizontal_bias="0.075"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintTop_toBottomOf="@+id/divider4"
+            app:layout_constraintVertical_bias="0.326" />
 
         <TextView
             android:id="@+id/textViewSelectTheDay"
             android:layout_width="258dp"
-            android:layout_height="45dp"
-            android:text="Please select when you want to make the Call"
+            android:layout_height="wrap_content"
+            android:text="@string/when_to_make_call"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.131" />
+            app:layout_constraintTop_toBottomOf="@+id/divider4"
+            app:layout_constraintVertical_bias="0.203" />
+
+        <EditText
+            android:id="@+id/editTextTextEventNameCreateEvent"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/name_of_the_event"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider4"
+            app:layout_constraintVertical_bias="0.089" />
+
+        <EditText
+            android:id="@+id/editTextTextEventDescriptionCreateEvent"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/descrption"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider4"
+            app:layout_constraintVertical_bias="0.503" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
