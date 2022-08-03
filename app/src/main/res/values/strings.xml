@@ -86,4 +86,5 @@
     <string name="description321">Description</string>
     <string name="edit_event">Edit Event?</string>
     <string name="event_edited">Event edited</string>
+    <string name="edit">Edit</string>
 </resources>

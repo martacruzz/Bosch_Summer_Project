@@ -72,4 +72,6 @@
     <string name="description321">Descrição</string>
     <string name="edit_event">Editar Evento?</string>
     <string name="event_edited">Evento editado</string>
+    <string name="edit">Editar</string>
+
 </resources>

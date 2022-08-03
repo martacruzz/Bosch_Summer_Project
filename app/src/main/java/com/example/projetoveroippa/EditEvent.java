@@ -96,7 +96,7 @@ public class EditEvent extends Fragment {
                 } else if (!afterTodayDateCheck(date, time)) {
                     Toast.makeText(getContext(), getString(R.string.date_not_valid), Toast.LENGTH_SHORT).show();
                 } else if (validator) {
-                    Toast.makeText(getContext(), getString(R.string.event_created), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.event_edited), Toast.LENGTH_SHORT).show();
                     DataBase.activeEvent.name = name;
                     DataBase.activeEvent.description = description;
                     DataBase.activeEvent.date = date;
