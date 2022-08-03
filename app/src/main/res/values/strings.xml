@@ -84,4 +84,6 @@
     <string name="time">Time:</string>
     <string name="message">Message:</string>
     <string name="description321">Description</string>
+    <string name="edit_event">Edit Event?</string>
+    <string name="event_edited">Event edited</string>
 </resources>

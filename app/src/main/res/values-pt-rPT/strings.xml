@@ -69,5 +69,7 @@
     <string name="date">Data:</string>
     <string name="time">Hora:</string>
     <string name="message">Menssagem:</string>
-    <string name="description">Descrição</string>
+    <string name="description321">Descrição</string>
+    <string name="edit_event">Editar Evento?</string>
+    <string name="event_edited">Evento editado</string>
 </resources>

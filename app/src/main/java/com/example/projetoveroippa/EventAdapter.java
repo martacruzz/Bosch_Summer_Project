@@ -91,6 +91,13 @@ import java.util.List;
                         ((TextView)mDialog.findViewById(R.id.textViewDatePopoUp)).setText(textViewDate.getText());
                         ((TextView)mDialog.findViewById(R.id.textViewTimePopUP)).setText(textViewTime.getText());
                         ((TextView)mDialog.findViewById(R.id.textView12)).setText(event.description);
+                        ((TextView)mDialog.findViewById(R.id.textViewEditEventPopUp)).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Navigation.findNavController(activity, R.id.nav_host_fragment_content_main).navigate(R.id.action_mainMenuEvents_to_editEvent);
+                                mDialog.dismiss();
+                            }
+                        });
                         ((FloatingActionButton)mDialog.findViewById(R.id.makeCall4)).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

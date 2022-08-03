@@ -17,9 +17,6 @@ public class DataBase {
     private static ArrayList<User> users;
     static User utilizadorAtivo;
     static  Event activeEvent;
-/*
-    public static ArrayList<Event> events = new ArrayList<>();
-*/
 
     private static ArrayList<User> loadData(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
@@ -50,26 +47,6 @@ public class DataBase {
         editor.apply();
         //saveDataEvents(context);
     }
-   /* private static void saveDataEvents(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(events);
-        editor.putString("Events", json);
-        editor.apply();
-    }*/
-    /*private static void loadDataEvents (Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("Events", null);
-        Type type = new TypeToken<ArrayList<Event>>() {
-        }.getType();
-        events = gson.fromJson(json, type);
-        if (events == null) {
-            events = new ArrayList<>();
-        }
-    }*/
-
     public static ArrayList<User> getUsers(Context context) {
         if (users == null) {
             return loadData(context);

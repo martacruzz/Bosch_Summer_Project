@@ -99,5 +99,17 @@
         <action
             android:id="@+id/action_mainMenuEvents_to_calendarFragment"
             app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_mainMenuEvents_to_editEvent"
+            app:destination="@id/editEvent" />
+    </fragment>
+    <fragment
+        android:id="@+id/editEvent"
+        android:name="com.example.projetoveroippa.EditEvent"
+        android:label="fragment_edit_event"
+        tools:layout="@layout/fragment_edit_event" >
+        <action
+            android:id="@+id/action_editEvent_to_mainMenuEvents"
+            app:destination="@id/mainMenuEvents" />
     </fragment>
 </navigation>

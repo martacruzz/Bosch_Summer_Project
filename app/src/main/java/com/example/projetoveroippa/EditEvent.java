@@ -1,5 +1,7 @@
 package com.example.projetoveroippa;
 
+import static com.example.projetoveroippa.CalendarFragment.afterTodayDateCheck;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -18,29 +21,24 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.projetoveroippa.databinding.FragmentCalendarBinding;
-import com.example.projetoveroippa.databinding.FragmentSetNewPasswordBinding;
-import com.example.projetoveroippa.object.Event;
+import com.example.projetoveroippa.databinding.FragmentEditEventBinding;
+import com.example.projetoveroippa.databinding.FragmentFotgotPasswordBinding;
 import com.example.projetoveroippa.object.Praesensa;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.Locale;
 
-public class CalendarFragment extends Fragment {
-    private FragmentCalendarBinding binding;
+
+public class EditEvent extends Fragment {
+    private FragmentEditEventBinding binding;
     int hour, minute;
     int month, day, year;
 
-    public CalendarFragment() {
+    public EditEvent() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static CalendarFragment newInstance(String param1, String param2) {
-        CalendarFragment fragment = new CalendarFragment();
+    public static EditEvent newInstance(String param1, String param2) {
+        EditEvent fragment = new EditEvent();
         return fragment;
     }
 
@@ -53,66 +51,72 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentCalendarBinding.inflate(inflater, container, false);
+        binding = FragmentEditEventBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.buttonHourPicker.setOnClickListener(new View.OnClickListener() {
+        binding.buttonHourPickerEditEvent2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 popTimePicker(view);
             }
         });
-        binding.buttonDatePicker.setOnClickListener(new View.OnClickListener() {
+        binding.buttonDatePickerEditEvent2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 popDatePicker(view);
             }
         });
-        binding.buttonAddNewEvent.setOnClickListener(new View.OnClickListener() {
+        Spinner spinnerMessage = (Spinner) binding.spinnerMessagesEditEvent2;
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Praesensa.arrayMensagens);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMessage.setAdapter(adapter4);
+
+        binding.editTextTextEventNameEditEvent2.setText(DataBase.activeEvent.name);
+        binding.editTextTextEventDescriptionEditEvent2.setText(DataBase.activeEvent.description);
+        binding.buttonDatePickerEditEvent2.setText(DataBase.activeEvent.date);
+        binding.buttonHourPickerEditEvent2.setText(DataBase.activeEvent.hour);
+        binding.spinnerMessagesEditEvent2.setSelection(DataBase.activeEvent.message);
+
+        binding.buttonEditEvent2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = "";
-                String noDate = "Select Date";
-                String noTime = "Select Time";
                 boolean validator = true;
-                Event newEvent = new Event();
-                newEvent.name = binding.editTextTextEventNameCreateEvent.getText().toString();
-                newEvent.date = binding.buttonDatePicker.getText().toString();
-                newEvent.hour = binding.buttonHourPicker.getText().toString();
-                newEvent.description = binding.editTextTextEventDescriptionCreateEvent.getText().toString();
-                newEvent.message = binding.spinnerMessages2.getSelectedItemPosition();
+                String description = binding.editTextTextEventDescriptionEditEvent2.getText().toString();
+                String name = binding.editTextTextEventNameEditEvent2.getText().toString();
+                String date =binding.buttonDatePickerEditEvent2.getText().toString();
+                String time =binding.buttonHourPickerEditEvent2.getText().toString();
+                int message = binding.spinnerMessagesEditEvent2.getSelectedItemPosition();
 
-
-                if (newEvent.name.equals(s) || newEvent.date.equals(noDate) || newEvent.hour.equals(noTime) || newEvent.description.equals(s)) {
+                if (name.equals("") || description.equals("")) {
                     Toast.makeText(getContext(), getString(R.string.smth_missing), Toast.LENGTH_SHORT).show();
                     validator = false;
-                } else if (!afterTodayDateCheck(newEvent.date, newEvent.hour)) {
-                    Toast.makeText(getContext(),getString(R.string.date_not_valid), Toast.LENGTH_SHORT).show();
+                } else if (!afterTodayDateCheck(date, time)) {
+                    Toast.makeText(getContext(), getString(R.string.date_not_valid), Toast.LENGTH_SHORT).show();
                 } else if (validator) {
                     Toast.makeText(getContext(), getString(R.string.event_created), Toast.LENGTH_SHORT).show();
-                    NavHostFragment.findNavController(CalendarFragment.this).navigate(R.id.action_calendarFragment_to_mainMenuEvents);
-                    DataBase.utilizadorAtivo.events.add(newEvent);
+                    DataBase.activeEvent.name = name;
+                    DataBase.activeEvent.description = description;
+                    DataBase.activeEvent.date = date;
+                    DataBase.activeEvent.hour = time;
+                    DataBase.activeEvent.message = message;
                     DataBase.saveData(getContext());
+                    NavHostFragment.findNavController(EditEvent.this).navigate(R.id.action_editEvent_to_mainMenuEvents);
+
                 }
 
             }
         });
-        Spinner spinnerMessage = (Spinner) binding.spinnerMessages2;
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, Praesensa.arrayMensagens);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerMessage.setAdapter(adapter2);
     }
-
     public void popTimePicker(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 hour = selectedHour;
                 minute = selectedMinute;
-                binding.buttonHourPicker.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                binding.buttonHourPickerEditEvent2.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;
@@ -130,7 +134,7 @@ public class CalendarFragment extends Fragment {
                 month = selectedMonth + 1;
                 day = selectedDay;
                 year = selectedYear;
-                binding.buttonDatePicker.setText(day + "/" + month + "/" + year);
+                binding.buttonDatePickerEditEvent2.setText(day + "/" + month + "/" + year);
             }
         };
         year = 2023;
@@ -138,26 +142,5 @@ public class CalendarFragment extends Fragment {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), style, onDateSetListener, year, month, day);
         datePickerDialog.setTitle(getString(R.string.select_date));
         datePickerDialog.show();
-    }
-
-    public static boolean afterTodayDateCheck (String date, String hour) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-
-        try {
-            Date DateEvent1 = sdf.parse(date + " " + hour);
-            Date DateEvent2 = new Date();
-            if (DateEvent1.after(DateEvent2)) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        return false;
-
     }
 }
