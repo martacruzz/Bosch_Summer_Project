@@ -112,6 +112,12 @@ public class MainMenuEvents extends Fragment {
                 NavHostFragment.findNavController(MainMenuEvents.this).navigate(R.id.action_mainMenuEvents_to_callCenter);
             }
         });
+        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(MainMenuEvents.this).navigate(R.id.action_mainMenuEvents_to_qrCodeFragment);
+            }
+        });
 
         binding.floatingActionButtonAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
